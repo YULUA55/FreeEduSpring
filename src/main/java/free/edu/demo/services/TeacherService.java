@@ -40,8 +40,7 @@ public class TeacherService {
     }
 
     public void addCourse(Course course) {
-        System.out.println("Захожу сбда");
-        System.out.println(course.getName()+ course.getDescription());
+        System.out.println(course.getName() + course.getDescription());
         courseRepository.save(course);
     }
 

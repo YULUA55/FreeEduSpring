@@ -5,11 +5,11 @@ import free.edu.demo.entities.Task;
 import java.io.Serializable;
 import java.util.List;
 
-public class LessonTasksModel implements Serializable {
+public class ListOfTasksModel implements Serializable {
 
     private List<Task> tasks;
 
-    public LessonTasksModel(List<Task> tasks) {
+    public ListOfTasksModel(List<Task> tasks) {
 
         this.tasks = tasks;
     }

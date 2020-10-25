@@ -5,8 +5,8 @@ import free.edu.demo.entities.Course;
 import free.edu.demo.entities.Lesson;
 import free.edu.demo.entities.Teacher;
 import free.edu.demo.model.CourseModel;
-import free.edu.demo.model.TeacherCoursesModel;
-import free.edu.demo.model.CourseLessonsModel;
+import free.edu.demo.model.ListOfCoursesModel;
+import free.edu.demo.model.ListOfLessonsModel;
 import free.edu.demo.model.TeacherModel;
 import free.edu.demo.services.TeacherService;
 
@@ -27,19 +27,19 @@ public class TeacherActionController {
 
     @CrossOrigin
     @GetMapping(value = "/courses")
-    public TeacherCoursesModel getCourses(@RequestParam Long teacherId) {
+    public ListOfCoursesModel getCourses(@RequestParam Long teacherId) {
         System.out.println("Кто-то здесь");
         Teacher teacher = teacherService.getTeacherById(teacherId);
         List<Course> courses = teacherService.getTeacherCourses(teacher);
-        return new TeacherCoursesModel(courses);
+        return new ListOfCoursesModel(courses);
     }
 
     @CrossOrigin
     @GetMapping(value = "/schedule")
-    public CourseLessonsModel getLessons(@RequestBody Long teacherId) {
+    public ListOfLessonsModel getLessons(@RequestBody Long teacherId) {
         Teacher teacher = teacherService.getTeacherById(teacherId);
         List<Lesson> lessons = teacherService.getSchedule(teacher);
-        return new CourseLessonsModel(lessons);
+        return new ListOfLessonsModel(lessons);
     }
 
     @CrossOrigin

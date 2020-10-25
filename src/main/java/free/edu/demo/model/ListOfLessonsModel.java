@@ -5,11 +5,11 @@ import free.edu.demo.entities.Lesson;
 import java.io.Serializable;
 import java.util.List;
 
-public class CourseLessonsModel implements Serializable {
+public class ListOfLessonsModel implements Serializable {
 
     List<Lesson> lessons;
 
-    public CourseLessonsModel(List<Lesson> lessons) {
+    public ListOfLessonsModel(List<Lesson> lessons) {
         this.lessons = lessons;
     }
 

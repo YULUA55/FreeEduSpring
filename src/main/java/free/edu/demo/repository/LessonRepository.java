@@ -21,4 +21,6 @@ public interface LessonRepository extends JpaRepository<Lesson, Long> {
     @Query("SELECT l FROM Teacher t JOIN t.courses c ON (:teacherId = c.teacher) JOIN c.lessons l ON (c = l.course)")
     List<Lesson> findAllByTeacher(@Param("teacherId") Teacher teacher);
 
+    @Query("SELECT l FROM Course c JOIN c.students s ON (:studentId = s.studentId) JOIN c.lessons l ON (c = l.course)")
+    List<Lesson> findAllByStudent(@Param("studentId") Long studentId);
 }

@@ -6,11 +6,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TeacherCoursesModel implements Serializable {
+public class ListOfCoursesModel implements Serializable {
 
     List<Course> courses;
 
-    public TeacherCoursesModel(List<Course> courses) {
+    public ListOfCoursesModel(List<Course> courses) {
         this.courses = courses;
     }
 
