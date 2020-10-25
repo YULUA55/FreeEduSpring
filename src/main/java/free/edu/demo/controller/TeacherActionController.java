@@ -27,7 +27,8 @@ public class TeacherActionController {
 
     @CrossOrigin
     @GetMapping(value = "/courses")
-    public TeacherCoursesModel getCourses(@RequestBody Long teacherId) {
+    public TeacherCoursesModel getCourses(@RequestParam Long teacherId) {
+        System.out.println("Кто-то здесь");
         Teacher teacher = teacherService.getTeacherById(teacherId);
         List<Course> courses = teacherService.getTeacherCourses(teacher);
         return new TeacherCoursesModel(courses);

@@ -7,18 +7,18 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Table(name="LESSON")
+@Table(name = "LESSON")
 public class Lesson {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long lessonId;
-    @Column(name="DESCRIPTION")
+    @Column(name = "DESCRIPTION")
     private String description;
-    @Column(name="DATE")
+    @Column(name = "DATE")
     private LocalDateTime date;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="COURSE_ID")
+    @JoinColumn(name = "COURSE_ID")
     @JsonIgnore
     private Course course;
 
@@ -34,7 +34,9 @@ public class Lesson {
     }
 
     public Lesson() {
-    };
+    }
+
+    ;
 
     public Lesson(String description, LocalDateTime date, Course course) {
         this.description = description;

@@ -5,11 +5,12 @@ package free.edu.demo.repository;
 import free.edu.demo.entities.Course;
 import free.edu.demo.entities.Teacher;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
+@EnableJpaRepositories
 public interface CourseRepository extends JpaRepository<Course, Long> {
 
     Course findByCourseId(Long id);

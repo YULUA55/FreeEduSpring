@@ -1,5 +1,7 @@
 package free.edu.demo.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -7,7 +9,8 @@ import java.util.List;
 @Table(name = "COURSE")
 public class Course {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name ="jpaSequence", sequenceName = "JPA_SEQUENCE", allocationSize = 1, initialValue = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "jpaSequence")
     @Column(name = "COURSE_ID")
     private Long courseId;
 
@@ -22,7 +25,13 @@ public class Course {
     private Teacher teacher;
 
     @OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Lesson> lessons;
+
+
+    @ManyToMany(mappedBy = "courses")
+    @JsonIgnore
+    private List<Student> students;
 
     public Course() {
     }
@@ -34,9 +43,6 @@ public class Course {
         this.teacher = teacher;
     }
 
-    public long getCourseId() {
-        return courseId;
-    }
 
 
     public String getName() {
@@ -55,6 +61,21 @@ public class Course {
         this.description = description;
     }
 
+    public List<Lesson> getLessons() {
+        return lessons;
+    }
+
+    public void setLessons(List<Lesson> lessons) {
+        this.lessons = lessons;
+    }
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
+    }
 
     @Override
     public boolean equals(Object obj) {
@@ -68,6 +89,7 @@ public class Course {
         return ((name.equals(guest.getName())) && (description.equals(guest.getDescription()))
         );
     }
+
 
 
     @Override

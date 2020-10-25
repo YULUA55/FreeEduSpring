@@ -3,6 +3,7 @@ package free.edu.demo.controller;
 
 import free.edu.demo.entities.Course;
 import free.edu.demo.entities.Lesson;
+import free.edu.demo.entities.Student;
 import free.edu.demo.entities.Task;
 import free.edu.demo.model.*;
 import free.edu.demo.services.CourseService;
@@ -21,6 +22,7 @@ public class CourseActionController {
     private final CourseService courseService;
 
     public CourseActionController(CourseService courseService) {
+
         this.courseService = courseService;
     }
 
@@ -50,6 +52,15 @@ public class CourseActionController {
         List<Task> tasks = courseService.getTasksByCourse(course);
         return new LessonTasksModel(tasks);
     }
+
+    @CrossOrigin
+    @GetMapping(value = "/students")
+    public ListOfStudentsModel getStudents(@RequestParam Long id) {
+        List<Student> students = courseService.getStudentsByCourse(id);
+        return new ListOfStudentsModel(students);
+
+    }
+
 
 }
 
