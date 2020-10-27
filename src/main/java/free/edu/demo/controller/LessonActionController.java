@@ -25,9 +25,8 @@ public class LessonActionController {
 
     @CrossOrigin
     @GetMapping(value = "/tasks")
-    public ListOfTasksModel getLessons(@RequestBody Long lessonId) {
-        Lesson lesson = lessonService.getLesson(lessonId);
-        List<Task> tasks = lessonService.getAllTasksByLesson(lesson);
+    public ListOfTasksModel getLessons(@RequestParam Long lessonId) {
+        List<Task> tasks = lessonService.getAllTasksByLesson(lessonId);
         return new ListOfTasksModel(tasks);
     }
 

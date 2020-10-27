@@ -27,13 +27,13 @@ public class CourseService {
         this.studentRepository = studentRepository;
     }
 
-    public Course getCourse(Long id) {
+    public Course getCourse(Long courseId) {
 
-        return courseRepository.findByCourseId(id);
+        return courseRepository.findByCourseId(courseId);
     }
 
-    public List<Lesson> getAllLessonByCourse(Course course) {
-
+    public List<Lesson> getAllLessonByCourse(Long courseId) {
+        Course course = courseRepository.findByCourseId(courseId);
         return lessonRepository.findAllByCourse(course);
     }
 
@@ -43,19 +43,18 @@ public class CourseService {
         lessonRepository.save(lesson);
     }
 
-    public List<Task> getTasksByCourse(Course course) {
-
+    public List<Task> getTasksByCourse(Long courseId) {
+        Course course = courseRepository.findByCourseId(courseId);
         return taskRepository.findAllByCourse(course);
     }
 
     public List<Student> getStudentsByCourse(Long courseId) {
-
         return studentRepository.findAllByCourse(courseId);
     }
 
 
-    public List<Student> getStudents(Long id) {
-        return studentRepository.findAllByCourse(id);
+    public List<Student> getStudents(Long courseId) {
+        return studentRepository.findAllByCourse(courseId);
     }
 
 }

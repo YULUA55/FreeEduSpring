@@ -29,8 +29,8 @@ public class TeacherService {
         return teacherRepository.findByTeacherId(id);
     }
 
-    public List<Course> getTeacherCourses(Teacher teacher) {
-
+    public List<Course> getTeacherCourses(Long teacherId) {
+        Teacher teacher = teacherRepository.findByTeacherId(teacherId);
         return courseRepository.findAllByTeacher(teacher);
     }
 
@@ -44,8 +44,8 @@ public class TeacherService {
         courseRepository.save(course);
     }
 
-    public List<Lesson> getSchedule(Teacher teacher) {
-
+    public List<Lesson> getSchedule(Long teacherId) {
+        Teacher teacher = teacherRepository.findByTeacherId(teacherId);
         return lessonRepository.findAllByTeacher(teacher);
     }
 

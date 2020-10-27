@@ -19,12 +19,18 @@ public class Student {
     @Column(name = "EMAIL")
     private String email;
 
+    @OneToMany(mappedBy = "student", fetch = FetchType.LAZY)
+    private List<Solution> solutions;
+
 
     @ManyToMany()
     @JsonIgnore
     private List<Course> courses;
 
-    public Student(){};
+    public Student() {
+    }
+
+    ;
 
     public Student(String name, String surname, String email) {
         this.name = name;
@@ -66,5 +72,13 @@ public class Student {
 
     public void setCourses(List<Course> courses) {
         this.courses = courses;
+    }
+
+    public List<Solution> getSolutions() {
+        return solutions;
+    }
+
+    public void setSolutions(List<Solution> solutions) {
+        this.solutions = solutions;
     }
 }

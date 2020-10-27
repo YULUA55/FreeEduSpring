@@ -20,19 +20,18 @@ public class LessonService {
         this.taskRepository = taskRepository;
     }
 
-    public Lesson getLesson(Long id) {
+    public Lesson getLesson(Long lessonId) {
 
-        return lessonRepository.findByLessonId(id);
+        return lessonRepository.findByLessonId(lessonId);
     }
 
-    public List<Task> getAllTasksByLesson(Lesson lesson) {
-
+    public List<Task> getAllTasksByLesson(Long lessonId) {
+        Lesson lesson = lessonRepository.findByLessonId(lessonId);
         return taskRepository.findAllByLesson(lesson);
     }
 
 
     public void addTask(Task task) {
-
         taskRepository.save(task);
     }
 

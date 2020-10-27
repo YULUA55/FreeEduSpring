@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "TASK")
@@ -21,7 +22,10 @@ public class Task {
     @JsonIgnore
     private Lesson lesson;
 
-    public Task(){
+    @OneToMany(mappedBy = "task", fetch = FetchType.LAZY)
+    private List<Solution> solutions;
+
+    public Task() {
 
     }
 

@@ -28,9 +28,8 @@ public class CourseActionController {
 
     @CrossOrigin
     @GetMapping(value = "/lessons")
-    public ListOfLessonsModel getLessons(@RequestBody Long courseId) {
-        Course course = courseService.getCourse(courseId);
-        List<Lesson> lessons = courseService.getAllLessonByCourse(course);
+    public ListOfLessonsModel getLessons(@RequestParam Long courseId) {
+        List<Lesson> lessons = courseService.getAllLessonByCourse(courseId);
         return new ListOfLessonsModel(lessons);
     }
 
@@ -47,9 +46,8 @@ public class CourseActionController {
 
     @CrossOrigin
     @GetMapping(value = "/tasks")
-    public ListOfTasksModel getTasks(@RequestBody Long courseId) {
-        Course course = courseService.getCourse(courseId);
-        List<Task> tasks = courseService.getTasksByCourse(course);
+    public ListOfTasksModel getTasks(@RequestParam Long courseId) {
+        List<Task> tasks = courseService.getTasksByCourse(courseId);
         return new ListOfTasksModel(tasks);
     }
 

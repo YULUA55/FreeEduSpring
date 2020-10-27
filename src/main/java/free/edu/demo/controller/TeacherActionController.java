@@ -22,23 +22,21 @@ public class TeacherActionController {
     private final TeacherService teacherService;
 
     public TeacherActionController(TeacherService teacherService) {
+
         this.teacherService = teacherService;
     }
 
     @CrossOrigin
     @GetMapping(value = "/courses")
     public ListOfCoursesModel getCourses(@RequestParam Long teacherId) {
-        System.out.println("Кто-то здесь");
-        Teacher teacher = teacherService.getTeacherById(teacherId);
-        List<Course> courses = teacherService.getTeacherCourses(teacher);
+        List<Course> courses = teacherService.getTeacherCourses(teacherId);
         return new ListOfCoursesModel(courses);
     }
 
     @CrossOrigin
     @GetMapping(value = "/schedule")
-    public ListOfLessonsModel getLessons(@RequestBody Long teacherId) {
-        Teacher teacher = teacherService.getTeacherById(teacherId);
-        List<Lesson> lessons = teacherService.getSchedule(teacher);
+    public ListOfLessonsModel getLessons(@RequestParam Long teacherId) {
+        List<Lesson> lessons = teacherService.getSchedule(teacherId);
         return new ListOfLessonsModel(lessons);
     }
 
