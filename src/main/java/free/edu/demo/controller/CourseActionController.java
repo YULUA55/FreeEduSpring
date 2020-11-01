@@ -53,8 +53,8 @@ public class CourseActionController {
 
     @CrossOrigin
     @GetMapping(value = "/students")
-    public ListOfStudentsModel getStudents(@RequestParam Long id) {
-        List<Student> students = courseService.getStudentsByCourse(id);
+    public ListOfStudentsModel getStudents(@RequestParam Long courseId) {
+        List<Student> students = courseService.getStudentsByCourse(courseId);
         return new ListOfStudentsModel(students);
 
     }

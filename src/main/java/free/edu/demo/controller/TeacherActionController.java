@@ -4,10 +4,8 @@ package free.edu.demo.controller;
 import free.edu.demo.entities.Course;
 import free.edu.demo.entities.Lesson;
 import free.edu.demo.entities.Teacher;
-import free.edu.demo.model.CourseModel;
-import free.edu.demo.model.ListOfCoursesModel;
-import free.edu.demo.model.ListOfLessonsModel;
-import free.edu.demo.model.TeacherModel;
+import free.edu.demo.model.*;
+import free.edu.demo.services.SolutionService;
 import free.edu.demo.services.TeacherService;
 
 import org.springframework.web.bind.annotation.*;
@@ -20,11 +18,21 @@ public class TeacherActionController {
 
 
     private final TeacherService teacherService;
+    private final SolutionService solutionService;
 
-    public TeacherActionController(TeacherService teacherService) {
-
+    public TeacherActionController(TeacherService teacherService, SolutionService solutionService) {
         this.teacherService = teacherService;
+        this.solutionService = solutionService;
     }
+
+    @CrossOrigin
+    @GetMapping(value = "/getTeacher")
+    public TeacherModel getTeacher(@RequestParam Long teacherId) {
+        System.out.println("someone");
+        Teacher teacher = teacherService.getTeacherById(teacherId);
+        return new TeacherModel(teacher.getName(), teacher.getSurname(), teacher.getEmail());
+    }
+
 
     @CrossOrigin
     @GetMapping(value = "/courses")
@@ -53,6 +61,12 @@ public class TeacherActionController {
         Teacher teacher = teacherService.getTeacherById(receivedCourse.getTeacherId());
         Course course = new Course(receivedCourse.getName(), receivedCourse.getDescription(), teacher);
         teacherService.addCourse(course);
+    }
+
+    @CrossOrigin
+    @PutMapping(value = "/rateSolution")
+    public void rateWork(@RequestBody MarkModel markModel) {
+        solutionService.updateMark(markModel.getSolutionId(), markModel.getMark());
     }
 
 }

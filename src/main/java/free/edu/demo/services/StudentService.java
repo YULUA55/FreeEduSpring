@@ -64,5 +64,19 @@ public class StudentService {
         return lessonRepository.findAllByStudent(studentId);
     }
 
+    public List<Task> getDoneTasks(Long courseId, Long studentId){
+        Course course = courseRepository.findByCourseId(courseId);
+        Student student = studentRepository.findByStudentId(studentId);
+        return taskRepository.findAllDoneByCourseAndStudent(course,student);
+    }
+
+    public List<Task> getNotDoneTasks(Long courseId, Long studentId){
+        Course course = courseRepository.findByCourseId(courseId);
+        Student student = studentRepository.findByStudentId(studentId);
+        return taskRepository.findAllNotDoneByCourseAndStudent(course,student);
+    }
+
+
+
 
 }

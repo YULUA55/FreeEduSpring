@@ -1,10 +1,7 @@
 package free.edu.demo.controller;
 
 
-import free.edu.demo.entities.Course;
-import free.edu.demo.entities.Lesson;
-import free.edu.demo.entities.Solution;
-import free.edu.demo.entities.Student;
+import free.edu.demo.entities.*;
 import free.edu.demo.model.*;
 import free.edu.demo.services.StudentService;
 import org.springframework.web.bind.annotation.*;
@@ -61,6 +58,22 @@ public class StudentActionController {
         List<Solution> solutions = studentService.getAllSolutions(studentId);
         return new ListOfSolutionsModel(solutions);
     }
+
+    @CrossOrigin
+    @GetMapping(value = "/allDoneTasks")
+    public ListOfTasksModel getAllDoneTasks(@RequestParam Long courseId, Long studentId){
+        List<Task> tasks = studentService.getDoneTasks(courseId,studentId);
+        return new ListOfTasksModel(tasks);
+    }
+
+    @CrossOrigin
+    @GetMapping(value = "/allNotDoneTasks")
+    public ListOfTasksModel getAllNotDoneTasks(@RequestParam Long courseId, Long studentId){
+        List<Task> tasks = studentService.getNotDoneTasks(courseId,studentId);
+        return new ListOfTasksModel(tasks);
+    }
+
+
 
 
 }
